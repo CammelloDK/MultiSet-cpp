@@ -12,7 +12,7 @@ class coppia{
 		/**
 			Costruttore di default
 		**/
-		coppia() : _elemento(0), _occorrenze(0){}
+		coppia() : _occorrenze(0){}
 
 		/**
 			Costruttore secondario
@@ -59,6 +59,8 @@ class coppia{
 
 		/**
 			Metodo getter per l'elemento
+
+			@return variabile _elemento
 		**/
 		T &elemento(){
 			return _elemento;
@@ -66,6 +68,8 @@ class coppia{
 
 		/**
 			Metodo getter costante dell'elemento
+
+			@return variabile constante _elemento
 		**/
 		const T &elemento() const{
 			return _elemento;
@@ -73,10 +77,18 @@ class coppia{
 
 		/**
 			Metodo getter per le occorrenze
+
+			@return variabile _occorrenze
 		**/
 		size_type occorrenze() const{
 			return _occorrenze;
 		}
+
+		/**
+			Metodo setter per le occorrenze
+
+			@param valore valore in input da assegnare alla variabile _occorrenze
+		**/
 
 		void set_occorrenze(size_type valore){
 			_occorrenze=valore;

@@ -205,7 +205,6 @@ class multiset{
 			@param inizio iteratore di inizio sequenza
 			@param fine iteratore di fine sequenza
 		**/
-
 		template<typename Q>
 		multiset(Q inizio, Q fine) : _testa(nullptr), _dimensione(0), _numelementi(0) {
 			try{
@@ -219,7 +218,6 @@ class multiset{
 		   		throw;
 		  	}
 		}
-
 
 		/**
 			Operatore di assegnamento
@@ -254,7 +252,7 @@ class multiset{
 						if(comp(i,j))
 							ok=true;
 					}
-					if(!ok)
+					if(ok==false)
 						return false;
 				}
 			}
@@ -351,6 +349,8 @@ class multiset{
 		nodo *n=find_helper(elem);
 		if(n!=nullptr)
 			return true;
+		else
+			return false;
 	}
 
 	/**
@@ -454,7 +454,7 @@ class multiset{
 
 				@return iteratore alla coppia successiva
 			**/
-			const_iterator operator++(){
+			const_iterator& operator++(){
 				n=n->prossimo;
 				return *this;
 			}
@@ -492,9 +492,9 @@ class multiset{
 			friend class multiset;
 
 			/**
-				Costruttore secondario di inizializzazione ad un nodo della lista BOH
+				Costruttore secondario di inizializzazione ad un nodo della lista
 
-				@param pn puntatore al nodo della lista
+				@param pn puntatore corrente al nodo della lista
 			**/
 			const_iterator(const nodo *pn){
 				n=pn;
@@ -668,9 +668,9 @@ class multiset{
 			friend class multiset;
 
 			/**
-				Costruttore secondario di inizializzazione ad un nodo della lista BOH
+				Costruttore secondario di inizializzazione ad un nodo della lista
 
-				@param pn puntatore al nodo della lista
+				@param pn puntatore corrente al nodo della lista
 			**/
 			const_elem_iterator(const nodo *pn){
 				n=pn;
@@ -704,7 +704,7 @@ class multiset{
 			@param primo primo iteratore
 			@param secondo secondo iteratore
 			
-			@return true se i due MultiSet contengono stessi elemtni con stesse occorrenze BOH
+			@return true se i due MultiSet contengono stessi elementi con stesse occorrenze
 		**/
 		bool comp(typename multiset<T,C>::const_iterator primo, typename multiset<T,C>::const_iterator secondo) const{
 			C comp;
