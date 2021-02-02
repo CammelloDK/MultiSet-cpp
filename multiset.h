@@ -3,8 +3,6 @@
 
 #include <stdexcept>	//std::runtime_error
 #include <algorithm>	//std::swap
-//#include <cassert>		//
-//#include <stddef.h>		//
 #include <iostream>		//std::ostream
 #include "coppia.h"
 
@@ -20,15 +18,13 @@ public:
 
 		@param mes messaggio di errore
 	**/
-	el_non_trovato(const char *mes) : std::runtime_error(mes){}
+	explicit el_non_trovato(const char *mes) : std::runtime_error(mes){}
 };
 
 
 /**
 	Classe che implementa un MultiSet di elementi generici T.
 	I dati sono memorizzati attraverso una lista composta da coppie <elemento, occorrenze>
-
-	@brief
 
 	@param T tipo del dato
 	@param C funtore di comparazione tra elementi
@@ -51,7 +47,7 @@ class multiset{
 
 			@param elem elemento da inserire
 		**/
-		nodo(const T &elem) : dato(elem), prossimo(nullptr){}
+		explicit nodo(const T &elem) : dato(elem), prossimo(nullptr){}
 
 		/**
 			Costruttore del nodo partendo da un elemento ripetuto
@@ -81,7 +77,7 @@ class multiset{
 			
 			@param other nodo da copiare
 		**/
-		nodo(const nodo &other) : dato(other.dato), prossimo(other.prossimo){}
+		explicit nodo(const nodo &other) : dato(other.dato), prossimo(other.prossimo){}
 
 		/**
 			Costruttore di default
@@ -142,7 +138,7 @@ class multiset{
 		nodo *corr = _testa;
 		nodo *prossimo = corr->prossimo;
 
-		while(mionodo!=prossimo || prossimo==nullptr) {
+		while(mionodo!=prossimo /*|| prossimo==nullptr*/) {
 			corr = prossimo;
 			prossimo = corr->prossimo;	
 		}
@@ -150,8 +146,6 @@ class multiset{
 	}
 	
 	public:
-
-		//Costruttori|Distruttore
 
 		/**
 			Costruttore di default
@@ -169,14 +163,15 @@ class multiset{
 			Metodo per svuotare il MultiSet
 		**/
 		void clear(){
-			nodo *tmp=_testa;
-			nodo *tmp2=nullptr;
+			nodo *tmp=nullptr;
 
-			while(tmp!=nullptr){
-				tmp2=tmp->prossimo;
-				delete tmp;
-				tmp=tmp2;
+			while(_testa!=nullptr){
+				tmp=_testa->prossimo;
+				delete _testa;
+				_testa=tmp;
 			}
+			_dimensione=0;
+			_numelementi=0;
 		}
 
 		/**
@@ -319,10 +314,19 @@ class multiset{
 			if(n->dato.occorrenze()>1)
 				n->dato.set_occorrenze(n->dato.occorrenze()-1);
 			else{
-				nodo *precedente=find_previous(n);
-				precedente->prossimo=n->prossimo;
-				delete n;
+				if(n==_testa){
+					_testa=n->prossimo;
+					delete n;
+				}
+				else{
+					nodo *precedente=find_previous(n);
+					precedente->prossimo=n->prossimo;
+					delete n;
+
+				}
+				_dimensione--;
 			}
+			_numelementi--;
 		}else
 			throw el_non_trovato("Elemento non trovato");
 	}
@@ -360,6 +364,15 @@ class multiset{
 	**/
 	int get_numelementi() const{
 		return _numelementi;
+	}
+
+	/**
+		Metodo getter utile a conoscere il numero di elementi del MultiSet
+
+		@return numero di elementi del MultiSet
+	**/
+	int get_dimensione() const{
+		return _dimensione;
 	}
 
 	/**
@@ -728,10 +741,16 @@ class multiset{
 **/
 template<typename T, typename F>
 std::ostream& operator<<(std::ostream &outstream, const multiset<T,F> &ms){
-	typename multiset<T,F>::const_iterator i,ie;
-	for(i=ms.begin(),ie=ms.end();i!=ie;++i)
-		outstream<<"<"<<i->elemento()<<", "<<i->occorrenze()<<"> ";
-	return outstream;
+	if(ms.get_numelementi()!=0){
+		typename multiset<T,F>::const_iterator i,ie;
+		for(i=ms.begin(),ie=ms.end();i!=ie;++i)
+			outstream<<"<"<<i->elemento()<<", "<<i->occorrenze()<<"> ";
+		return outstream;
+	}
+	else{
+		outstream<<"<0,0> - MultiSet vuoto";
+		return outstream;
+	}
 }
 
 #endif

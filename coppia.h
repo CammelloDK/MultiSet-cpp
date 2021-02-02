@@ -29,7 +29,7 @@ class coppia{
 			
 			@param elem elemento della coppia
 		**/
-		coppia(const T &elem) : _elemento(elem), _occorrenze(1){}
+		explicit coppia(const T &elem) : _elemento(elem), _occorrenze(1){}
 
 		/**
 			Distruttore
@@ -41,7 +41,7 @@ class coppia{
 
 			@param other coppia da copiare
 		**/
-		coppia(const coppia &other) : _elemento(other._elemento), _occorrenze(other._occorrenze){}
+		explicit coppia(const coppia &other) : _elemento(other._elemento), _occorrenze(other._occorrenze){}
 
 		/**
 			Operatore di assegnamento

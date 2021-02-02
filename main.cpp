@@ -61,6 +61,7 @@ void test1(){
 
 	typename multiset<int,intcmp>::const_elem_iterator ibegin,iend;
 
+
 	//m1=new multiset<int,intcmp>(); //Costr default
 
 	m1.add(1);
@@ -68,30 +69,32 @@ void test1(){
 		std::cout<<*ibegin<<", ";
 	std::cout<<std::endl;
 	std::cout<<m1<<std::endl;
+	std::cout<<"N_ELEM: "<<m1.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m1.get_dimensione()<<std::endl;
 
 	m1.add(1);
 	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
 		std::cout<<*ibegin<<", ";
 	std::cout<<std::endl;
 	std::cout<<m1<<std::endl;
+	std::cout<<"N_ELEM: "<<m1.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m1.get_dimensione()<<std::endl;
 
-	m1.add(3,4);
+	m1.add(6,2);
 	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
 		std::cout<<*ibegin<<", ";
 	std::cout<<std::endl;
 	std::cout<<m1<<std::endl;
+	std::cout<<"N_ELEM: "<<m1.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m1.get_dimensione()<<std::endl;
 
-	m1.add(4,2);
+	m1.remove(6,2);
 	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
 		std::cout<<*ibegin<<", ";
 	std::cout<<std::endl;
 	std::cout<<m1<<std::endl;
-
-	m1.add(1,2);
-	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
-		std::cout<<*ibegin<<", ";
-	std::cout<<std::endl;
-	std::cout<<m1<<std::endl;
+	std::cout<<"N_ELEM: "<<m1.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m1.get_dimensione()<<std::endl;
 
 
 	m1.remove(1);
@@ -99,60 +102,27 @@ void test1(){
 		std::cout<<*ibegin<<", ";
 	std::cout<<std::endl;
 	std::cout<<m1<<std::endl;
+	std::cout<<"N_ELEM: "<<m1.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m1.get_dimensione()<<std::endl;
 
-	m1.remove(3,2);
-	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
-		std::cout<<*ibegin<<", ";
-	std::cout<<std::endl;
+	m1.remove(1);
 	std::cout<<m1<<std::endl;
+	std::cout<<"N_ELEM: "<<m1.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m1.get_dimensione()<<std::endl;
+	m1.add(5,2);
 
-	/*m1.remove(3,20);
-	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
-		std::cout<<*ibegin<<", ";
-	std::cout<<std::endl;*/
+	multiset<int, intcmp> m2=m1;
 
-	m1.remove(1,3);
-	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
-		std::cout<<*ibegin<<", ";
-	std::cout<<std::endl;
-	std::cout<<m1<<std::endl;
-
-	m1.remove(3,2);
-	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
-		std::cout<<*ibegin<<", ";
-	std::cout<<std::endl;
-	std::cout<<m1<<std::endl;
-
-
-	/*m1.add(5);
-	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
-		std::cout<<*ibegin<<", ";
-	std::cout<<std::endl;
-	std::cout<<m1<<std::endl;*/
-
-	/*m1.remove(4,2);
-	for(ibegin=m1.elem_begin(), iend=m1.elem_end();ibegin!=iend;++ibegin)
-		std::cout<<*ibegin<<", ";
-	std::cout<<std::endl;
-	std::cout<<m1<<std::endl;*/
-
-	/*multiset<int, intcmp> m2=m1;
-
+	m1.clear();
+	m2.clear();
 	std::cout<<m1<<std::endl;
 	std::cout<<m2<<std::endl;
 
-	std::cout<<(m1==m2)<<std::endl;*/
+	std::cout<<(m1==m2)<<std::endl;
 
-	multiset<int, intcmp> m3;
-	m3.add(1);
-	m3.add(2,3);
-	m3.remove(2,2);
-	multiset<int, intcmp> m4=m3;
-	/*m3.add(1);
-	m4.add(1);*/
+	multiset<int, intcmp> m3(m1);
 	std::cout<<m3<<std::endl;
-	std::cout<<m4<<std::endl;
-	std::cout<<(m3==m4)<<std::endl;
+
 
 
 
