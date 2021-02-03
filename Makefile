@@ -1,17 +1,14 @@
-CXX=g++
-SRC=multiset.h coppia.h main.cpp
-OBJ=$(SRC:.cpp=.o)
-EXEC=844796
+main.exe: main.o
+	g++ main.o -o main.exe -std=c++0x
 
-all:$(EXEC)
-
-$(EXEC):$(OBJ)
-	$(CXX) -o $@ $^ -std=c++0x
+main.o: main.cpp multiset.h coppia.h
+	g++ -c main.cpp -o main.o -std=c++0x
 
 cleanexe:
-	rm -rf $(EXEC) 
+	rm -rf *.exe 
 
 cleanjunk:
 	rm -rf *.o
 
 clean: cleanjunk cleanexe
+

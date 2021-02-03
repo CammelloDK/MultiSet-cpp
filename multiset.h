@@ -3,6 +3,7 @@
 
 #include <stdexcept>	//std::runtime_error
 #include <algorithm>	//std::swap
+#include <stddef.h>
 #include <iostream>		//std::ostream
 #include "coppia.h"
 
