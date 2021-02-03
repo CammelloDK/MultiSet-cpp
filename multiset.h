@@ -7,6 +7,10 @@
 #include "coppia.h"
 
 /**
+	@file multiset.h
+**/
+/**
+	@brief
 	Classe per gestione di eventuali eccezioni sollevate dal MultiSet
 **/
 class el_non_trovato : public std::runtime_error{
@@ -14,6 +18,7 @@ class el_non_trovato : public std::runtime_error{
 public:
 
 	/**
+		@brief
 		Costruttore secondario che prende in input un messaggio di errore
 
 		@param mes messaggio di errore
@@ -23,8 +28,11 @@ public:
 
 
 /**
+	@author Diego Vismara - 844796
+	
+	@brief
 	Classe che implementa un MultiSet di elementi generici T.
-	I dati sono memorizzati attraverso una lista composta da coppie <elemento, occorrenze>
+	I dati sono memorizzati attraverso una lista composta da coppie <elemento - occorrenze>
 
 	@param T tipo del dato
 	@param C funtore di comparazione tra elementi
@@ -138,7 +146,7 @@ class multiset{
 		nodo *corr = _testa;
 		nodo *prossimo = corr->prossimo;
 
-		while(mionodo!=prossimo /*|| prossimo==nullptr*/) {
+		while(mionodo!=prossimo) {
 			corr = prossimo;
 			prossimo = corr->prossimo;	
 		}
@@ -203,9 +211,9 @@ class multiset{
 		template<typename Q>
 		multiset(Q inizio, Q fine) : _testa(nullptr), _dimensione(0), _numelementi(0) {
 			try{
-				while(begin != end) {
-		    		add(static_cast<T>(*begin));
-		    		begin++;
+				while(inizio != fine) {
+		    		add(static_cast<T>(*inizio));
+		    		inizio++;
 		   		}
 		  	}
 		  	catch(...){
@@ -391,6 +399,7 @@ class multiset{
 	}
 
 	/**
+		@brief
 		Iteratore forward di sola lettura per coppia di valori
 	**/
 	class const_iterator{
@@ -534,6 +543,7 @@ class multiset{
 	}
 
 	/**
+		@brief
 		Iteratore forward di sola lettura per singolo elemento
 	**/
 	class const_elem_iterator{

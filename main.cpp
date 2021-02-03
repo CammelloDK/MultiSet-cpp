@@ -2,7 +2,13 @@
 #include "multiset.h"
 
 /**
-	Funtore di confronto per interi
+	@file main.cpp
+**/
+
+//________________FUNTORI________________//
+
+/**
+	@brief Funtore di confronto per interi
 
 	@param i1 primo intero da confrontare
 	@param i2 secondo intero da confrontare
@@ -19,7 +25,7 @@ struct intcmp{
 };
 
 /**
-	Funtore di confronto per char
+	@brief Funtore di confronto per char
 
 	@param c1 primo char da confrontare
 	@param c2 secondo char da confrontare
@@ -36,7 +42,7 @@ struct charcmp{
 };
 
 /**
-	Funtore di confronto per stringhe
+	@brief Funtore di confronto per stringhe
 
 	@param s1 prima stringa da confrontare
 	@param s2 seconda stringa da confrontare
@@ -174,14 +180,63 @@ void test1_int(){
 	std::cout<<"//______________CLEAR_____________//"<<std::endl;
 
 	std::cout<<"M3: "<<m3<<std::endl;
+	std::cout<<"N_ELEM: "<<m3.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m3.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
 	m3.clear();
-	std::cout<<"m3.clear(): "<<m3<<std::endl<<std::endl;
+	std::cout<<"m3.clear(): "<<m3<<std::endl;
+	std::cout<<"N_ELEM: "<<m3.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m3.get_dimensione()<<std::endl<<std::endl;
 
 	std::cout<<"//______________CONTAINS_____________//"<<std::endl;
 
 	std::cout<<"M2: "<<m2<<std::endl;
 	std::cout<<"m2.contains(9): "<<m2.contains(9)<<std::endl;
-	std::cout<<"m2.contains(20): "<<m2.contains(20)<<std::endl<<std::endl;	
+	std::cout<<"m2.contains(20): "<<m2.contains(20)<<std::endl<<std::endl;
+
+	std::cout<<"//______________COSTRUTTORE_SEQUENZA_Q_____________//"<<std::endl;
+
+	multiset<int, intcmp> m4;
+	std::cout<<"M4: "<<m4<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl<<std::endl;
+
+	m4.add(1,2);
+	std::cout<<"M4.add(1,2): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	m4.add(3,3);
+	std::cout<<"M4.add(3,3): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	m4.add(5,7);
+	std::cout<<"M4.add(5,7): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	multiset<int, intcmp> m5(m4.elem_begin(),m4.elem_end());
+	std::cout<<"multiset<int, intcmp> m5(m4.elem_begin(),m4.elem_end())"<<std::endl;
+	std::cout<<"M5: "<<m5<<std::endl;
+	for(ibegin=m5.elem_begin(), iend=m5.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m5.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m5.get_dimensione()<<std::endl<<std::endl;
 }
 
 void test2_str(){
@@ -287,14 +342,63 @@ void test2_str(){
 	std::cout<<"//______________CLEAR_____________//"<<std::endl;
 
 	std::cout<<"M3: "<<m3<<std::endl;
+	std::cout<<"N_ELEM: "<<m3.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m3.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
 	m3.clear();
-	std::cout<<"m3.clear(): "<<m3<<std::endl<<std::endl;
+	std::cout<<"m3.clear(): "<<m3<<std::endl;
+	std::cout<<"N_ELEM: "<<m3.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m3.get_dimensione()<<std::endl<<std::endl;
 
 	std::cout<<"//______________CONTAINS_____________//"<<std::endl;
 
 	std::cout<<"M2: "<<m2<<std::endl;
 	std::cout<<"m2.contains(\"verde\"): "<<m2.contains("verde")<<std::endl;
 	std::cout<<"m2.contains(\"giallo\"): "<<m2.contains("giallo")<<std::endl<<std::endl;
+
+	std::cout<<"//______________COSTRUTTORE_SEQUENZA_Q_____________//"<<std::endl;
+
+	multiset<std::string, strcmp> m4;
+	std::cout<<"M4: "<<m4<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl<<std::endl;
+
+	m4.add("rosso",2);
+	std::cout<<"M4.add(\"rosso\",2): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	m4.add("blu",3);
+	std::cout<<"M4.add(\"blu\",3): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	m4.add("verde",7);
+	std::cout<<"M4.add(\"verde\",7): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	multiset<std::string, strcmp> m5(m4.elem_begin(),m4.elem_end());
+	std::cout<<"multiset<std::string, strcmp> m5(m4.elem_begin(),m4.elem_end())"<<std::endl;
+	std::cout<<"M5: "<<m5<<std::endl;
+	for(ibegin=m5.elem_begin(), iend=m5.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m5.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m5.get_dimensione()<<std::endl<<std::endl;
 }
 
 void test3_char(){
@@ -400,14 +504,63 @@ void test3_char(){
 	std::cout<<"//______________CLEAR_____________//"<<std::endl;
 
 	std::cout<<"M3: "<<m3<<std::endl;
+	std::cout<<"N_ELEM: "<<m3.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m3.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
 	m3.clear();
-	std::cout<<"m3.clear(): "<<m3<<std::endl<<std::endl;
+	std::cout<<"m3.clear(): "<<m3<<std::endl;
+	std::cout<<"N_ELEM: "<<m3.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m3.get_dimensione()<<std::endl<<std::endl;
 
 	std::cout<<"//______________CONTAINS_____________//"<<std::endl;
 
 	std::cout<<"M2: "<<m2<<std::endl;
 	std::cout<<"m2.contains('h'): "<<m2.contains('h')<<std::endl;
-	std::cout<<"m2.contains('z'): "<<m2.contains('z')<<std::endl<<std::endl;	
+	std::cout<<"m2.contains('z'): "<<m2.contains('z')<<std::endl<<std::endl;
+
+	std::cout<<"//______________COSTRUTTORE_SEQUENZA_Q_____________//"<<std::endl;
+
+	multiset<char, charcmp> m4;
+	std::cout<<"M4: "<<m4<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl<<std::endl;
+
+	m4.add('a',2);
+	std::cout<<"M4.add('a',2): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	m4.add('c',3);
+	std::cout<<"M4.add('c',3): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	m4.add('s',7);
+	std::cout<<"M4.add('s',7): "<<m4<<std::endl;
+	for(ibegin=m4.elem_begin(), iend=m4.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m4.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m4.get_dimensione()<<std::endl;
+	std::cout<<"---------"<<std::endl;
+
+	multiset<char, charcmp> m5(m4.elem_begin(),m4.elem_end());
+	std::cout<<"multiset<char, charcmp> m5(m4.elem_begin(),m4.elem_end())"<<std::endl;
+	std::cout<<"M5: "<<m5<<std::endl;
+	for(ibegin=m5.elem_begin(), iend=m5.elem_end();ibegin!=iend;++ibegin)
+		std::cout<<*ibegin<<", ";
+	std::cout<<std::endl;
+	std::cout<<"N_ELEM: "<<m5.get_numelementi()<<std::endl;
+	std::cout<<"DIM: "<<m5.get_dimensione()<<std::endl<<std::endl;
 }
 
 //________________MAIN________________//

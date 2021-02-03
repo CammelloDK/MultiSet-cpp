@@ -3,6 +3,18 @@
 
 #include <algorithm>	//std::swap
 
+/**
+	@file coppia.h
+**/
+
+/**
+	@author Diego Vismara - 844796
+	
+	@brief
+	Classe che implementa una coppia <elemento - occorrenze>
+
+**/
+
 template<typename T>
 class coppia{
 

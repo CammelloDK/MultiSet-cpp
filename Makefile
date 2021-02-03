@@ -6,7 +6,7 @@ EXEC=844796
 all:$(EXEC)
 
 $(EXEC):$(OBJ)
-	$(CXX) -o $@ $^
+	$(CXX) -o $@ $^ -std=c++0x
 
 cleanexe:
 	rm -rf $(EXEC) 
