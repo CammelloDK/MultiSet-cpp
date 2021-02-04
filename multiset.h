@@ -49,7 +49,7 @@ class multiset{
 	**/
 	struct nodo {
 		coppia<T> dato; ///< dato di tipo T
-		nodo *prossimo; ///< puntatore all'elemento successivo
+		nodo *prossimo; ///< puntatore al nodo successivo
 
 		/**
 			Costruttore del nodo partendo da un elemento
@@ -122,7 +122,7 @@ class multiset{
 
 		@param elem elemento da cercare
 		
-		@return puntatore al nodo se questo esite, 0 altrimenti
+		@return puntatore al nodo se questo esite, nullptr altrimenti
 	**/
 	nodo *find_helper(const T &elem) const{
 		nodo *corr=_testa;
@@ -264,7 +264,7 @@ class multiset{
 		}
 
 		/**
-			Metodo che inserisce nel MultiSet un nuovo elemento T
+			Metodo che inserisce nel MultiSet un nuovo elemento di tipo T con occ occorrenze
 
 			@param elem elemento da inserire
 			@param occ numero occorrenze dell'elemento
@@ -289,12 +289,13 @@ class multiset{
 		}
 
 		/**
-			Metodo che inserisce nel MultiSet un nuovo elemento T senza occorrenze
+			Metodo che inserisce nel MultiSet un nuovo elemento di tipo T senza occorrenze passate in input
 
 			@param elem elemento da inserire
 		**/
 		void add(const T &elem){
-			if(!contains(elem)){
+			add(elem,1);
+			/*if(!contains(elem)){
 				if(_testa==nullptr)
 					_testa=new nodo(elem);
 				else{
@@ -309,7 +310,7 @@ class multiset{
 				nodo *n=find_helper(elem);
 				n->dato.set_occorrenze(n->dato.occorrenze()+1);
 				_numelementi++;
-			}
+			}*/
 		}
 
 	/**
@@ -376,7 +377,7 @@ class multiset{
 	}
 
 	/**
-		Metodo getter utile a conoscere il numero di elementi del MultiSet
+		Metodo getter utile a conoscere il numero di nodi del MultiSet
 
 		@return numero di elementi del MultiSet
 	**/
@@ -401,7 +402,7 @@ class multiset{
 
 	/**
 		@brief
-		Iteratore forward di sola lettura per coppia di valori
+		Iteratore forward di sola lettura per coppia di valori - nodo
 	**/
 	class const_iterator{
 		public:
@@ -528,7 +529,7 @@ class multiset{
 	/**
 		Iteratore di inizio sequenza
 
-		@return iteratore al primo elemento della sequenza
+		@return iteratore al primo nodo della sequenza
 	**/
 	const_iterator begin() const{
 		return const_iterator(_testa);
@@ -537,7 +538,7 @@ class multiset{
 	/**
 		Iteratore di fine sequenza
 
-		@return iteratore all'ultimo elemento della sequenza
+		@return iteratore all'ultimo nodo della sequenza
 	**/
 	const_iterator end() const{
 		return const_iterator();
@@ -743,7 +744,7 @@ class multiset{
 }; // fine classe multiset
 
 /**
-	Operatore di stream di output per la stampa del multiset
+	Operatore di stream di output per la stampa del MultiSet
 
 	@param outstream stream di output
 	@param ms MultiSet da stampare
