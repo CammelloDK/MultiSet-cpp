@@ -295,22 +295,6 @@ class multiset{
 		**/
 		void add(const T &elem){
 			add(elem,1);
-			/*if(!contains(elem)){
-				if(_testa==nullptr)
-					_testa=new nodo(elem);
-				else{
-					nodo *tmp=_testa;
-					_testa=new nodo(elem);
-					_testa->prossimo=tmp;
-				}
-				_dimensione++;
-				_numelementi++;
-			}
-			else{
-				nodo *n=find_helper(elem);
-				n->dato.set_occorrenze(n->dato.occorrenze()+1);
-				_numelementi++;
-			}*/
 		}
 
 	/**
