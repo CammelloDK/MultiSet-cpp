@@ -294,7 +294,13 @@ class multiset{
 			@param elem elemento da inserire
 		**/
 		void add(const T &elem){
-			add(elem,1);
+			try{
+				add(elem,1);
+			}
+			catch(...){
+				throw;
+			}
+			
 		}
 
 	/**
